@@ -8,10 +8,13 @@ matrix:
       compiler: gcc
       install: bash .ci/build-c2man.sh
       env: PATH=$PATH:$TRAVIS_BUILD_DIR/c2man-install
+
     - os: linux
       compiler: clang
+
     - os: osx
       compiler: clang
+
     - os: linux
       language: python
       python: 3.5
