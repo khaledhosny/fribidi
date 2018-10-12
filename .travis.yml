@@ -31,6 +31,18 @@ matrix:
         - ninja -C build test
       cache: pip
 
+    - os: windows
+      install:
+        - export PATH=/c/Python35:/c/Python35/Scripts/$PATH
+        - python -m pip install ninja
+          # XXX: Move back to the latest release once 0.48.1 is out
+        - python -m pip pip install git+https://github.com/mesonbuild/meson@0.48
+        - call "%VS140COMNTOOLS%\..\..\VC\vcvarsall.bat" "x64"
+      script:
+        - meson -Ddocs=false --backend=ninja build
+        - ninja -C build
+        - ninja -C build test
+
 before_script:
   - ./autogen.sh
 
